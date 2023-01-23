@@ -11,7 +11,7 @@ SwiftUI table view, which works on **iOS** and **macOS**.
 - ✅ Displays **all columns** on iOS, even when the horizontal size class is compact.
 - ✅ Supports vertical and **horizontal** scrolling (or no scrolling at all if that's what you need).
 - ✅ Supports **"sticky" headers** (with `.simpleTableHeader()` view modifier).
-- ✅ Allows configuring column/row size: equal row heights, equal column widths, or constrained cell aspect ratio.
+- ✅ Allows configuring column/row size: equal heights, equal widths, or constrained aspect ratio.
 
 ## 🏛 Project structure
 
