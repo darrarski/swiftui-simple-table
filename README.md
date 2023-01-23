@@ -16,7 +16,7 @@ SwiftUI table view, which works on **iOS** and **macOS**.
 ## 🏛 Project structure
 
 ```
-swift-composable-presentation (Swift Package)
+swiftui-simple-table (Swift Package)
  └─ SimpleTable (Library)
 ```
 
