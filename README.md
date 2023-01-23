@@ -5,7 +5,13 @@
 
 ## 📝 Description
 
-WIP
+SwiftUI table view, which works on **iOS** and **macOS**.
+
+- ✅ Simple to use (check out included examples).
+- ✅ Displays **all columns** on iOS, even when the horizontal size class is compact.
+- ✅ Supports vertical and **horizontal** scrolling (or no scrolling at all if that's what you need).
+- ✅ Supports **"sticky" headers** (with `.simpleTableHeader()` view modifier).
+- ✅ Allows configuring column/row size: equal row heights, equal column widths, or constrained cell aspect ratio.
 
 ## 🏛 Project structure
 
@@ -18,7 +24,31 @@ swift-composable-presentation (Swift Package)
 
 Use [Swift Package Manager](https://swift.org/package-manager/) to add `SimpleTable` as a dependency to your project.
 
-WIP
+Check out included examples:
+
+### ▶️ Colors table example
+
+- Source code: [Sources/SimpleTable/Examples/ColorsTableExample.swift](Sources/SimpleTable/Examples/ColorsTableExample.swift)
+
+![Colors table example](Misc/ColorsTableExample.png)
+
+### ▶️ Shapes table example
+
+- Source code: [Sources/SimpleTable/Examples/ShapesTableExample.swift](Sources/SimpleTable/Examples/ShapesTableExample.swift)
+
+![Colors table example](Misc/ShapesTableExample.png)
+
+### ▶️ Multiplication table example
+
+- Source code: [Sources/SimpleTable/Examples/MultiplicationTableExample.swift](Sources/SimpleTable/Examples/MultiplicationTableExample.swift)
+
+![Multiplication table example](Misc/MultiplicationTableExample.png)
+
+### ▶️ People table example
+
+- Source code: [Sources/SimpleTable/Examples/PeopleTableExample.swift](Sources/SimpleTable/Examples/PeopleTableExample.swift)
+
+![Multiplication table example](Misc/PeopleTableExample.png)
 
 ## 🛠 Develop
 
