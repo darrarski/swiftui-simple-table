@@ -45,11 +45,6 @@ public struct SimpleTableView<Content>: View where Content: View {
     case .automatic:
       ViewThatFits(in: scrollAxes) {
         content()
-          .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: alignment
-          )
 
         scrollView {
           content()
