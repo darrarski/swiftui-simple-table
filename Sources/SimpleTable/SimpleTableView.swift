@@ -10,6 +10,11 @@ public struct SimpleTableView<Content>: View where Content: View {
     case automatic
   }
 
+  struct ScrollInfo: Equatable {
+    var contentSize: CGSize
+    var scrolledToStart: Bool
+  }
+
   /// Wrapper for `SimpleTableLayout` that embeds provided content in a `ScrollView`
   ///
   /// - Parameters:
@@ -33,7 +38,6 @@ public struct SimpleTableView<Content>: View where Content: View {
   public var scrollMode: ScrollMode
   public var showsScrollIndicators: Bool
   public var content: () -> Content
-  @State var scrollViewSize: CGSize = .zero
   let startAnchorId = "simple-table-start-anchor-id"
 
   public var body: some View {
@@ -58,14 +62,8 @@ public struct SimpleTableView<Content>: View where Content: View {
   func scrollView<Content: View>(
     @ViewBuilder content: @escaping () -> Content
   ) -> some View {
-    ScrollViewReader { scrollViewProxy in
-      ZStack {
-        GeometryReader { geometryProxy in
-          Color.clear
-            .onAppear { scrollViewSize = geometryProxy.size }
-            .onChange(of: geometryProxy.size) { scrollViewSize = $0 }
-        }
-
+    GeometryReader { scrollGeometry in
+      ScrollViewReader { scrollProxy in
         ScrollView(
           scrollAxes,
           showsIndicators: showsScrollIndicators
@@ -73,8 +71,8 @@ public struct SimpleTableView<Content>: View where Content: View {
           content()
             .coordinateSpace(name: SimpleTableCoordinateSpaceName.content)
             .frame(
-              minWidth: scrollViewSize.width,
-              minHeight: scrollViewSize.height,
+              minWidth: scrollGeometry.size.width,
+              minHeight: scrollGeometry.size.height,
               alignment: .topLeading
             )
             .overlay(alignment: .topLeading) {
@@ -82,10 +80,31 @@ public struct SimpleTableView<Content>: View where Content: View {
                 .allowsHitTesting(false)
                 .id(startAnchorId)
             }
+            .background {
+              GeometryReader { contentGeometry in
+                let scrollFrame = scrollGeometry.frame(in: .global)
+                let contentFrame = contentGeometry.frame(in: .global)
+                let info = ScrollInfo(
+                  contentSize: contentFrame.size,
+                  scrolledToStart: contentFrame.minX >= scrollFrame.minX && contentFrame.minY >= scrollFrame.minY
+                )
+
+                Color.clear.onChange(of: info) { old, new in
+                  if old.contentSize != new.contentSize,
+                     old.scrolledToStart == true,
+                     new.scrolledToStart == false
+                  {
+                    DispatchQueue.main.async {
+                      scrollProxy.scrollTo(startAnchorId)
+                    }
+                  }
+                }
+              }
+            }
         }
         .coordinateSpace(name: SimpleTableCoordinateSpaceName.scroll)
         .onAppear {
-          scrollViewProxy.scrollTo(startAnchorId)
+          scrollProxy.scrollTo(startAnchorId)
         }
       }
     }
