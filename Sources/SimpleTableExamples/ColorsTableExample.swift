@@ -1,7 +1,7 @@
-#if DEBUG
+import SimpleTable
 import SwiftUI
 
-struct _ColorsTableExample: View {
+struct ColorsTableExample: View {
   struct Color: Identifiable {
     var id: String { name }
     var name: String
@@ -46,9 +46,8 @@ struct _ColorsTableExample: View {
   }
 }
 
-struct _ColorsTableExample_Previews: PreviewProvider {
+struct ColorsTableExample_Previews: PreviewProvider {
   static var previews: some View {
-    _ColorsTableExample()
+    ColorsTableExample()
   }
 }
-#endif

@@ -9,10 +9,17 @@ let package = Package(
   ],
   products: [
     .library(name: "SimpleTable", targets: ["SimpleTable"]),
+    .library(name: "SimpleTableExamples", targets: ["SimpleTableExamples"]),
   ],
   targets: [
     .target(
       name: "SimpleTable"
+    ),
+    .target(
+      name: "SimpleTableExamples",
+      dependencies: [
+        .target(name: "SimpleTable"),
+      ]
     ),
   ]
 )

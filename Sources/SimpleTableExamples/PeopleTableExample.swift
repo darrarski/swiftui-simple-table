@@ -1,7 +1,7 @@
-#if DEBUG
+import SimpleTable
 import SwiftUI
 
-struct _PeopleTableExample: View {
+struct PeopleTableExample: View {
   struct Person: Identifiable {
     var id = UUID()
     var firstName: String
@@ -183,9 +183,8 @@ struct _PeopleTableExample: View {
   }
 }
 
-struct _PeopleTableExample_Previews: PreviewProvider {
+struct PeopleTableExample_Previews: PreviewProvider {
   static var previews: some View {
-    _PeopleTableExample()
+    PeopleTableExample()
   }
 }
-#endif

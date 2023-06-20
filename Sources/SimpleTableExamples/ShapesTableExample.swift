@@ -1,7 +1,7 @@
-#if DEBUG
+import SimpleTable
 import SwiftUI
 
-struct _ShapesTableExample: View {
+struct ShapesTableExample: View {
   var body: some View {
     SimpleTableLayout(
       columnsCount: 3,
@@ -24,9 +24,8 @@ struct _ShapesTableExample: View {
   }
 }
 
-struct _ShapesTableExample_Previews: PreviewProvider {
+struct ShapesTableExample_Previews: PreviewProvider {
   static var previews: some View {
-    _ShapesTableExample()
+    ShapesTableExample()
   }
 }
-#endif

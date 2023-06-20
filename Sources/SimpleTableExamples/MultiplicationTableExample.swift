@@ -1,7 +1,7 @@
-#if DEBUG
+import SimpleTable
 import SwiftUI
 
-struct _MultiplicationTableExample: View {
+struct MultiplicationTableExample: View {
   var body: some View {
     SimpleTableView {
       SimpleTableLayout(
@@ -78,9 +78,8 @@ struct _MultiplicationTableExample: View {
   }
 }
 
-struct _MultiplicationTableExample_Previews: PreviewProvider {
+struct MultiplicationTableExample_Previews: PreviewProvider {
   static var previews: some View {
-    _MultiplicationTableExample()
+    MultiplicationTableExample()
   }
 }
-#endif
