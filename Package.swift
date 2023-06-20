@@ -1,12 +1,5 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.8
 import PackageDescription
-
-let swiftSettings: [SwiftSetting] = [
-  //.unsafeFlags(["-Xfrontend", "-warn-concurrency"], .when(configuration: .debug)),
-  //.unsafeFlags(["-Xfrontend", "-strict-concurrency=complete"], .when(configuration: .debug)),
-  //.unsafeFlags(["-Xfrontend", "-debug-time-function-bodies"], .when(configuration: .debug)),
-  //.unsafeFlags(["-Xfrontend", "-debug-time-expression-type-checking"], .when(configuration: .debug)),
-]
 
 let package = Package(
   name: "swiftui-simple-table",
@@ -19,8 +12,21 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "SimpleTable",
-      swiftSettings: swiftSettings
+      name: "SimpleTable"
     ),
   ]
 )
+
+for target in package.targets {
+  target.swiftSettings = target.swiftSettings ?? []
+  target.swiftSettings?.append(
+    .unsafeFlags(
+      [
+        //"-Xfrontend", "-strict-concurrency=targeted",
+        //"-Xfrontend", "-enable-actor-data-race-checks",
+        //"-Xfrontend", "-debug-time-function-bodies",
+        //"-Xfrontend", "-debug-time-expression-type-checking",
+        //"-enable-library-evolution",
+      ], .when(configuration: .debug))
+  )
+}
